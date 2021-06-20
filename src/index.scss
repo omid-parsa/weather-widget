@@ -1,0 +1,58 @@
+@charset "utf-8";
+// Import a Google Font
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
+
+
+:root {
+  --color-primary: #e06b34;
+  --color-secondary: #DD0000;
+  --color-additional: #FFCE00;
+  --color-gray: #f7f7f7e8;
+  --color-gray-dark: #bebaba;
+}
+// Colors
+// $color-primary: #ff3366;
+// $color-primary-light: #fa1850;
+// $color-primary-dark: #fd557f;
+
+$color-secondary: #544545;
+$color-secondary-light: #544545;
+$color-secondary-dark: #544545;
+
+$color-white: #ffffff;
+$color-black: #000000;
+
+$color-gray: #f7f7f7e8;
+$color-gray-light: #bebaba;
+$color-gray-dark: #575757;
+
+// Break points
+// $bp-largest: 75em; // 1200px / 16px = 75em
+// $bp-large: 68.75em; // 1100 / 16 = 68.75
+// $bp-medium: 56.25em; // 900 / 16 = 56.25
+// $bp-small: 37.5em; // 600 / 16 = 37.5 
+// $bp-smallest: 31.25em; // 500 / 16 = 37.5 
+
+// Global styles
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  // this defines what one rem is
+  font-size: 62.5%;
+}
+body {
+  box-sizing: border-box;
+  font-family: 'Nunito', sans-serif;
+  font-size: 1.8rem;
+  line-height: 1.7;
+  color: $color-gray-dark;
+  @media only screen and (max-width: var(--bp-small)) {
+    font-size: 4rem;
+  }
+}

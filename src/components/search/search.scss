@@ -1,0 +1,77 @@
+.search-box {
+  margin-right: 1rem;
+  position: relative;
+  &--spinner{
+    position: absolute;
+    top: 3rem;
+    width: 100%;
+    padding: .3rem;
+    background-color: var(--color-gray);
+    border: 1px solid var(--color-gray-dark);
+  }
+}
+@mixin border-bottom-radius-0 {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.react-autosuggest {
+  &__input {
+    background-color: white;
+    width: 24rem;
+    height: 3rem;
+    padding: .3rem 1rem;
+    font-weight: 300;
+    font-size: 1.6rem;
+    border: 1px solid var(--color-gray-dark);
+    border-radius: 4px;
+    &:focus {
+      outline: none;
+      @include border-bottom-radius-0;
+    }
+  }
+
+  &__container {
+    position: relative;
+    &--open{
+      @include border-bottom-radius-0;
+    }
+  }
+
+  &__suggestion {
+    cursor: pointer;
+    padding: .3rem 1rem;
+    &--focused {
+      background-color: #ddd;
+    }
+    &--highlighted{
+      background-color: var(--color-gray-dark);
+    }
+  }
+
+  &__suggestions{
+    &-list {
+      list-style: none;
+      font-size: 1.4rem;
+      border-bottom: 1px solid var(--color-gray-dark);
+      border-bottom-left-radius: 4px;
+      border-bottom-right-radius: 4px;
+    }
+    &-container {
+      position: absolute;
+      background-color: var(--color-gray);
+      width: 100%;
+      top: 2.99rem;
+      margin: 0;
+      padding: 0;
+      font-weight: 300;
+      font-size: 1.6rem;
+      border: .1px solid var(--color-gray-dark);
+      border-top: transparent;
+      border-bottom: transparent;
+      border-bottom-left-radius: 4px;
+      border-bottom-right-radius: 4px;
+      z-index: 2;
+    }
+  }
+}
