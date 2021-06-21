@@ -13,7 +13,6 @@ function App() {
     storage.setItem("location", JSON.stringify(value));
   }
   useEffect(() => {
-    storage.clear();
     const savedLocationString = storage.getItem("location");
     if (savedLocationString) {
       handleSetLocation(JSON.parse(savedLocationString));
