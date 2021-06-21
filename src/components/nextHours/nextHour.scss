@@ -1,0 +1,16 @@
+.next-hours {
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  &--image {
+    width: 4rem;
+  }
+  &--text {
+    &__time {
+      font-size: 1rem;
+    }
+    &__degree {
+      font-size: 1.4rem;
+    }
+  }
+}

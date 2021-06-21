@@ -6,31 +6,32 @@ import { Location } from 'core/types';
 import Spinner from 'components/spinner/Spinner';
 import './search.scss'
 
-export default function Search() {
+interface SearchProps {
+  handleSetLocation: (value: Location) => void
+}
+export default function Search({ handleSetLocation }: SearchProps) {
   const [value, setValue] = useState<string>('');
-  const [location, setLocation] = useState<Location>();
   const [locations, setLocations] = useState<Array<Location>>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  console.log(location);
+
   const debouncedFetch = useCallback(
     debounce(
       async (e: SuggestionsFetchRequestedParams): Promise<void> => {
-        if (!e.value) {
-          return
-        }
         const result = await fetchLocations(e.value);
         setLocations(result.geonames);
         setIsLoading(false);
       }, 1000)
     , []);
 
-  const handleChange = (e: SuggestionsFetchRequestedParams) => {
-    setIsLoading(true);
-    setLocations([]);
-    debouncedFetch(e);
+  const handleChange = (e: SuggestionsFetchRequestedParams): void => {
+    if (e.value && e.reason !== "input-focused") {
+      debouncedFetch(e);
+      setIsLoading(true);
+      setLocations([]);
+    }
   }
-  const selectLocation = (suggestion: Location) => {
-    setLocation(suggestion);
+  const selectLocation = (suggestion: Location): void => {
+    handleSetLocation(suggestion);
     setValue(suggestion.name);
   }
   return (

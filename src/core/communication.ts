@@ -12,16 +12,6 @@ function createHeaders(accessToken?: string): Record<string, string> {
   return result;
 }
 
-// creates headers for requests with payload
-function createPayloadHeaders(accessToken?: string): Record<string, string> {
-  let result = createHeaders(accessToken);
-  result = {
-    ...result,
-    'Content-Type': 'application/json',
-  };
-
-  return result;
-}
 
 // appends query string to url
 function createUrlWithQuery(url: string, query?: ParsedUrlQueryInput) {
@@ -75,59 +65,3 @@ export async function get<ResponseT>(url: string, accessToken?: string, query?: 
   return result;
 }
 
-export async function post<PayloadT, ResponseT>(
-  url: string, payload: PayloadT, accessToken?: string, query?: ParsedUrlQueryInput,
-): Promise<ResponseT> {
-  const options: RequestInit = {
-    method: 'POST',
-    headers: createPayloadHeaders(accessToken),
-    body: JSON.stringify(payload),
-  };
-
-  const response = await fetch(createUrlWithQuery(url, query), options);
-  await ensureResponseIsSuccess(response);
-
-  const result = await response.json() as ResponseT;
-  return result;
-}
-
-export async function put<PayloadT, ResponseT>(
-  url: string, payload: PayloadT, accessToken?: string, query?: ParsedUrlQueryInput,
-): Promise<ResponseT> {
-  const options: RequestInit = {
-    method: 'PUT',
-    headers: createPayloadHeaders(accessToken),
-    body: JSON.stringify(payload),
-  };
-
-  const response = await fetch(createUrlWithQuery(url, query), options);
-  await ensureResponseIsSuccess(response);
-
-  const result = await response.json() as ResponseT;
-  return result;
-}
-
-export async function del(url: string, accessToken?: string, query?: ParsedUrlQueryInput) {
-  const options: RequestInit = {
-    method: 'DELETE',
-    headers: createHeaders(accessToken),
-  };
-
-  const response = await fetch(createUrlWithQuery(url, query), options);
-  await ensureResponseIsSuccess(response);
-}
-
-export async function delWithResponse<ResponseT>(
-  url: string, accessToken?: string, query?: ParsedUrlQueryInput,
-): Promise<ResponseT> {
-  const options: RequestInit = {
-    method: 'DELETE',
-    headers: createHeaders(accessToken),
-  };
-
-  const response = await fetch(createUrlWithQuery(url, query), options);
-  await ensureResponseIsSuccess(response);
-
-  const result = await response.json() as ResponseT;
-  return result;
-}

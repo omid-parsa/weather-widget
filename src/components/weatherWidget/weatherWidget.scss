@@ -1,0 +1,29 @@
+.widget {
+  margin: auto;
+  margin-top: 5rem;
+  width: 30rem;
+  height: 20rem;
+  border-radius: 4px;
+  box-shadow: .2rem .5rem 1rem;
+  background-image: url(../../assets/bg.png);
+  background-size: cover;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+  &--current{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    &--text__city{
+      font-size: 1.8rem;
+    }
+    &--text__degree{
+      font-size: 2rem;
+      text-align: right;
+    }
+    &--image {
+      width: 6rem;
+    }
+  }
+}
